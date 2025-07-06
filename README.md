@@ -116,7 +116,7 @@ npm run build
 php artisan serve
 ```
 
-A aplicação estará disponível em `http://localhost:8000`
+A aplicação estará disponível em `http://localhost:8000`, utilize o usuário padrão do Laravel para realizar login. Email: test@example.com , Senha: password
 
 
 ## Funcionalidades implementadas
