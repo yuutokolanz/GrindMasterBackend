@@ -59,8 +59,8 @@ _Tela principal mostrando a listagem de partidas com estatísticas por jogo_
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/grind-master-backend.git
-cd grind-master-backend
+git clone https://github.com/seu-usuario/GrindMasterBackend.git
+cd GrindMasterBackend
 ```
 
 ### 2. Instale as dependências do PHP
