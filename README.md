@@ -59,7 +59,7 @@ _Tela principal mostrando a listagem de partidas com estatísticas por jogo_
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/GrindMasterBackend.git
+git clone https://github.com/yuutokolanz/GrindMasterBackend.git
 cd GrindMasterBackend
 ```
 
