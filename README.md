@@ -1,61 +1,163 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Grind Master - Backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Sobre o app
 
-## About Laravel
+Grind Master é um aplicativo desenvolvido para jogadores competitivos que desejam acompanhar sua evolução em jogos como League of Legends, Valorant, CS2, Mortal Kombat e Teamfight Tactics.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A proposta é permitir que os usuários registrem suas partidas, avaliem seu desempenho, acompanhem sua progressão em rankings e visualizem gráficos com base em seus resultados ao longo do tempo. É a ferramenta ideal para quem leva os jogos a sério e quer monitorar sua jornada rumo ao topo!
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Screenshot da aplicação
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+![Grind Master - Tela principal](./docs/screenshot.png)
+_Tela principal mostrando a listagem de partidas com estatísticas por jogo_
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Funcionalidades básicas (prioritárias):
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+✅ Cadastro e login de usuário  
+✅ Cadastro de jogos utilizados pelo usuário  
+✅ Registro de partidas com os seguintes dados:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   Jogo
+-   Data
+-   Resultado (Vitória / Derrota)
+-   Elo ou ranking
+-   Função / Personagem jogado
+-   Nota de desempenho (de 1 a 10)
+-   K/D (Abates/Mortes) Em jogos que se apliquem
 
-## Laravel Sponsors
+✅ Listagem de partidas por jogo  
+✅ Cadastro de treinos  
+✅ Controle de treinos feitos  
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Funcionalidades adicionais (ou futuras):
 
-### Premium Partners
+-   Estatísticas comparativas entre jogos
+-   Análise de desempenho por função/personagem
+-   Metas semanais de performance
+-   Importação automática de dados por APIs públicas (ex: Riot API)
+-   Compartilhamento de perfil com amigos
+-   Notificações de metas ou lembretes de treino
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Tecnologias utilizadas
 
-## Contributing
+-   **Backend**: Laravel 11
+-   **Frontend**: Blade Templates com Tailwind CSS
+-   **Banco de dados**: SQLite
+-   **Autenticação**: Laravel Auth
+-   **Versionamento**: Git/GitHub
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Pré-requisitos
 
-## Code of Conduct
+-   PHP 8.2+
+-   Composer
+-   Node.js e npm
+-   SQLite
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Configuração e Execução
 
-## Security Vulnerabilities
+### 1. Clone o repositório
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+git clone https://github.com/seu-usuario/grind-master-backend.git
+cd grind-master-backend
+```
 
-## License
+### 2. Instale as dependências do PHP
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+composer install
+```
+
+### 3. Instale as dependências do Node.js
+
+```bash
+npm install
+```
+
+### 4. Configure o ambiente
+
+```bash
+cp .env.example .env
+```
+
+### 5. Gere a chave da aplicação
+
+```bash
+php artisan key:generate
+```
+
+### 6. Crie o arquivo do banco de dados SQLite
+```bash
+touch database/database.sqlite
+```
+
+### 7. Execute as migrações
+
+```bash
+php artisan migrate
+```
+
+### 8. Execute os seeders para dados predefinidos e/ou de teste
+
+```bash
+php artisan db:seed
+```
+
+### 9. Compile os assets
+
+```bash
+npm run build
+```
+
+### 10. Inicie o servidor
+
+```bash
+php artisan serve
+```
+
+A aplicação estará disponível em `http://localhost:8000`
+
+
+## Funcionalidades implementadas
+
+### Autenticação
+
+-   Login e logout de usuários
+-   Middleware de autenticação para rotas protegidas
+
+### Gerenciamento de Partidas
+
+-   Criação, edição, visualização e exclusão de partidas
+-   Estatísticas específicas por jogo (Estatísticas para League of Legends e CS2 até o momento)
+-   Filtro por jogo selecionado
+
+### Gerenciamento de Treinos
+
+-   Criação, edição, visualização e exclusão de treinos
+-   Sistema de treinos repetíveis com contador de conclusões
+-   Botão para marcar treino como concluído
+
+### Interface
+
+-   Design responsivo com Tailwind CSS
+-   Componentes reutilizáveis para formulários
+-   Navegação intuitiva entre diferentes seções
+-   Feedback visual para ações do usuário
+
+## Comandos úteis
+
+```bash
+# Limpar cache
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+
+# Executar migrações
+php artisan migrate
+
+# Executar seeders
+php artisan db:seed
+
+# Compilar assets em modo desenvolvimento
+npm run dev
