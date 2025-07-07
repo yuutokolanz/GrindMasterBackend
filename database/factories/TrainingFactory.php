@@ -17,9 +17,12 @@ class TrainingFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->title(),
+            'user_id' => \App\Models\User::factory(),
+            'game_id' => \App\Models\Game::factory(),
+            'title' => fake()->sentence(3),
             'description' => fake()->text(),
-            'reapeatable' => fake()->boolean(),
+            'repeatable' => fake()->boolean(),
+            'completed_count' => fake()->numberBetween(0, 10),
         ];
     }
 }

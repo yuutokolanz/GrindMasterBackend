@@ -39,7 +39,33 @@ class ContestsController extends Controller
             'contest_date' => 'required|date',
         ]);
 
-        // Criar a partida (Contest)
+        // Validação das estatísticas específicas por jogo antes de criar o contest
+        switch ($game->name) {
+            case 'LeagueOfLegends':
+                $request->validate([
+                    'champion_played' => 'required|string|max:255',
+                    'kills' => 'required|integer',
+                    'deaths' => 'required|integer',
+                    'assists' => 'required|integer',
+                    'cs' => 'required|integer',
+                ]);
+                break;
+
+            case 'CS2':
+                $request->validate([
+                    'map_played' => 'required|string|max:255',
+                    'kills' => 'required|integer',
+                    'deaths' => 'required|integer',
+                    'hs_percent' => 'required|numeric',
+                    'mvps' => 'required|integer',
+                ]);
+                break;
+
+            default:
+                return back()->with('error', 'Jogo não reconhecido.');
+        }
+
+        // Criar a partida (Contest) apenas após validação bem-sucedida
         $contest = new Contest([
             'user_id' => Auth::id(),
             'result' => $request->result,
@@ -52,14 +78,6 @@ class ContestsController extends Controller
         switch ($game->name) {
 
             case 'LeagueOfLegends':
-                $request->validate([
-                    'champion_played' => 'required|string|max:255',
-                    'kills' => 'required|integer',
-                    'deaths' => 'required|integer',
-                    'assists' => 'required|integer',
-                    'cs' => 'required|integer',
-                ]);
-                
                 $stats = new LolStat([
                     'champion_played' => $request->champion_played,
                     'champion_played_icon' => 'https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/' . $request->champion_played . '_0.jpg',
@@ -72,15 +90,7 @@ class ContestsController extends Controller
 
                 break;
 
-            case 'CS2':
-                $request->validate([
-                    'map_played' => 'required|string|max:255',
-                    'kills' => 'required|integer',
-                    'deaths' => 'required|integer',
-                    'hs_percent' => 'required|numeric',
-                    'mvps' => 'required|integer',
-                ]);
-                
+            case 'CS2':                
                 $stats = new CsStat([
                     'map_played' => $request->map_played,
                     'kills' => $request->kills,
@@ -96,7 +106,7 @@ class ContestsController extends Controller
                 return back()->with('error', 'Jogo não reconhecido.');
         }
 
-        return redirect()->route('user.contests.index', ['game' => session('current_game')])->with('success', 'Partida salva com sucesso!');
+        return redirect()->route('user.contests.index', ['game' => $game->id])->with('success', 'Partida salva com sucesso!');
     }
 
     public function edit(Game $game, Contest $contest)
@@ -174,7 +184,7 @@ class ContestsController extends Controller
                 break;
         }
 
-        return redirect()->route('user.contests.index', $game->id)->with('success', 'Partida atualizada com sucesso!');
+        return redirect()->route('user.contests.index', ['game' => $game->id])->with('success', 'Partida atualizada com sucesso!');
     }
 
     public function destroy(Game $game, Contest $contest)
@@ -182,6 +192,17 @@ class ContestsController extends Controller
         // Excluir a partida (Contest) e suas estatísticas associadas
         $contest->delete();
 
-        return redirect()->route('user.contests.index', $game->id)->with('success', 'Partida excluída com sucesso!');
+        return redirect()->route('user.contests.index', ['game' => $game->id])->with('success', 'Partida excluída com sucesso!');
+    }
+
+    public function show(Game $game, Contest $contest)
+    {
+        // Load the stats relationship
+        $contest->load(['lolStat', 'csStat']);
+
+        return view('user.contests.show', [
+            'game' => $game,
+            'contest' => $contest,
+        ]);
     }
 }

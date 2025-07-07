@@ -17,8 +17,10 @@ class ContestFactory extends Factory
     public function definition(): array
     {
         return [
-            'match_date' => fake()->date(),
-            'result' => fake()->randomElement(['Vitória'. 'Derrota', 'Empate']),
+            'user_id' => \App\Models\User::factory(),
+            'game_id' => \App\Models\Game::factory(),
+            'contest_date' => fake()->date(),
+            'result' => fake()->randomElement(['Victory', 'Defeat', 'Draw']),
             'notes' => fake()->text(),
         ];
     }

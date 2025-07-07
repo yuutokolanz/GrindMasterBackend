@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->date('contest_date');
             $table->string('result');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('game_id')->constrained()->cascadeOnDelete();
         });

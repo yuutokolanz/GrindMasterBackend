@@ -13,6 +13,7 @@ class Contest extends Model
 
     protected $fillable = [
         'user_id',
+        'game_id',
         'contest_date',
         'result',
         'notes'

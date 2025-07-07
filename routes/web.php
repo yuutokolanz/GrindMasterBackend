@@ -15,16 +15,6 @@ Route::post('/login', [AuthController::class, 'authenticate'])->name('authentica
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
-    Route::get('/', function () {
-        $currentGame = session('current_game', 1); // Default para jogo ID 1
-        $view = session('view', 'contests'); // Default para contests
-
-        if ($view === 'trainings') {
-            return redirect()->route('user.trainings.index', ['game' => $currentGame]);
-        }
-        return redirect()->route('user.contests.index', ['game' => $currentGame]);
-    })->name('user.dashboard');
-
     Route::post('/set-game', function (Request $request) {
         $request->validate(['game_id' => 'required|exists:games,id']);
         session(['current_game' => $request->game_id]);

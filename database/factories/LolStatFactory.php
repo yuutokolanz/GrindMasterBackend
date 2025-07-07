@@ -16,12 +16,17 @@ class LolStatFactory extends Factory
      */
     public function definition(): array
     {
+        $champions = ['Jinx', 'Ashe', 'Ezreal', 'Vayne', 'Caitlyn', 'Lucian', 'Sivir', 'Tristana'];
+        $champion = fake()->randomElement($champions);
+
         return [
-            'champion_played' => fake()->name(),
-            'kills' => fake()->numberBetween(0, 100),
-            'deaths' => fake()->numberBetween(0, 100),
-            'assists' => fake()->numberBetween(0, 100),
-            'cs' => fake()->numberBetween(0, 500),
+            'contest_id' => \App\Models\Contest::factory(),
+            'champion_played' => $champion,
+            'champion_played_icon' => 'https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/' . $champion . '_0.jpg',
+            'kills' => fake()->numberBetween(0, 30),
+            'deaths' => fake()->numberBetween(0, 15),
+            'assists' => fake()->numberBetween(0, 25),
+            'cs' => fake()->numberBetween(50, 300),
         ];
     }
 }

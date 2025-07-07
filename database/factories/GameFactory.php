@@ -17,8 +17,8 @@ class GameFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'icon_url' => fake()->url(),
+            'name' => fake()->randomElement(['LeagueOfLegends', 'CS2', 'Valorant', 'Dota2']),
+            'icon_url' => fake()->imageUrl(64, 64, 'games'),
         ];
     }
 }
